@@ -1,8 +1,15 @@
-import { Map, TileLayer,Marker,Popup, MapContainer} from 'react-leaflet'
+import { Map, TileLayer,Marker,Popup, MapContainer,Polygon,Polyline} from 'react-leaflet'
 import React from 'react'
 import {Icon} from 'leaflet';
 import { data } from './data';
 import disasterimg from '../src/images.jpg'
+
+const line=[
+    [51.505, -0.09],
+    [51.51, -0.1],
+    [51.51, -0.12],
+  ]
+const limeOptions = { color: 'lime' }
 export const MainMap = () => {
     const position = [27.673223768106425,85.31110094938776]
     const [activeMarker,setactiveMarker]=React.useState(
@@ -60,6 +67,86 @@ export const MainMap = () => {
                 </Marker>
              }})    
          }
+
+    {/* <Polyline pathOptions={limeOptions}  position={line} /> */}
+       {/* { data.features.map((item)=>{
+         if(item.geometry.type=='LineString'){
+    
+          return <Polyline 
+               key={item.properties.id} 
+                position={[
+                    [
+                      [51.5, -0.1],
+                      [51.5, -0.12],
+                      [51.52, -0.12],
+                    ],
+                    [
+                      [51.5, -0.05],
+                      [51.5, -0.06],
+                      [51.52, -0.06],
+                    ],
+                  ]}
+                >
+                </Polyline>
+             }})    
+         } */}
+        
+        {/* { data.features.map((item)=>{
+         if(item.geometry.type=='Polygon'){
+          return <Polygon 
+               key={item.properties.id} 
+                position={[
+                    item.geometry.coordinates[0][1],
+                    item.geometry.coordinates[0][0],
+
+                    item.geometry.coordinates[1][1],
+                    item.geometry.coordinates[1][0],
+                    
+                    item.geometry.coordinates[2][1],
+                    item.geometry.coordinates[2][0],
+                    
+                    item.geometry.coordinates[3][1],
+                    item.geometry.coordinates[3][0],
+                    
+                    item.geometry.coordinates[4][1],
+                    item.geometry.coordinates[4][0],
+                    
+                    item.geometry.coordinates[5][1],
+                    item.geometry.coordinates[5][0],
+                    
+                    item.geometry.coordinates[5][1],
+                    item.geometry.coordinates[5][0],
+
+                    
+                    item.geometry.coordinates[6][1],
+                    item.geometry.coordinates[6][0],
+                ]}
+                >
+                    <Popup>
+                       <div>
+                       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                            <a href="#">
+                                <img class="rounded-t-lg" src={disasterimg} alt="" />
+                            </a>
+                            <div class="p-5">
+                                <a href="#">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.properties.id}</h5>
+                                </a>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.properties.name}</p>
+                                <a href="#" class=" inline-flex items-center px-3 py-2 text-sm font-medium text-center  bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <span className='text-white'> More Information</span>
+                                  <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                            
+                      </div> 
+                     </Popup>  
+                </Polygon>
+             }})    
+         } */}
+
+
     
     
   </MapContainer>

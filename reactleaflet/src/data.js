@@ -14,6 +14,19 @@ export const data={
           ],
           "type": "Point"
         }
+      }, {
+        "type": "Feature",
+        "properties": {
+          "name": "Test",
+          "id":"Test Hazard"
+        },
+        "geometry": {
+          "coordinates": [
+            85.31,
+            27.67
+          ],
+          "type": "Point"
+        }
       },
       {
         "type": "Feature",

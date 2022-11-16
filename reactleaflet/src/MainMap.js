@@ -3,12 +3,7 @@ import React from 'react'
 import {Icon} from 'leaflet';
 import { data } from './data';
 import disasterimg from '../src/images.jpg'
-
-
-
-
 export const MainMap = () => {
-
     const limeOptions = { color: 'red' }
     const position = [27.673223768106425,85.31110094938776]
     const [activeMarker,setactiveMarker]=React.useState(
@@ -99,7 +94,6 @@ export const MainMap = () => {
                                 </a>
                             </div>
                         </div>
-                            
                       </div> 
                      </Popup>  
                 </Polyline>

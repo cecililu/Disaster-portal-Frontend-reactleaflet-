@@ -2,10 +2,14 @@ import './App.css';
 import { Panel } from './Panel';
 import { NavBar } from './NavBar';
 import { MainMap } from './MainMap';
-
+import {
+  BrowserRouter,
+  
+} from "react-router-dom";
 function App() {
 
 return (
+  <BrowserRouter>
     <div className='App'>
       <NavBar/>
     <div className='grid grid-cols-4 gap-0 h-screen'>
@@ -17,6 +21,7 @@ return (
      </div>
     </div>
   </div>
+  </BrowserRouter>
   );
 }
 

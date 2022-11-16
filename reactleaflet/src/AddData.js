@@ -2,11 +2,11 @@ import React from 'react'
 
 export const AddData = () => {
   return (
-    <div className='add-panel '>
+    <div className='add-panel'>
         <div className='flex justify-center'>
-        <span className='text-teal-600 text-xl m-2  '>Report a disaster data</span>
+        <span className='text-teal-600 text-xl m-2 '>Report a disaster data</span>
         </div>
-    <div class="flex justify-center p-1 m-5"> 
+    <div class="flex justify-center p-1 m-4"> 
     <div class="mb-3 xl:w-96 ">
      
     <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700" >Address</label>

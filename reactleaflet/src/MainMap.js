@@ -4,13 +4,12 @@ import {Icon} from 'leaflet';
 import { data } from './data';
 import disasterimg from '../src/images.jpg'
 
-const line=[
-    [51.505, -0.09],
-    [51.51, -0.1],
-    [51.51, -0.12],
-  ]
-const limeOptions = { color: 'lime' }
+
+
+
 export const MainMap = () => {
+
+    const limeOptions = { color: 'red' }
     const position = [27.673223768106425,85.31110094938776]
     const [activeMarker,setactiveMarker]=React.useState(
         {
@@ -68,28 +67,24 @@ export const MainMap = () => {
              }})    
          }
 
-    {/* <Polyline pathOptions={limeOptions}  position={line} /> */}
-       {/* { data.features.map((item)=>{
+   
+
+       {data.features.map((item)=>{
          if(item.geometry.type=='LineString'){
-    
-          return <Polyline 
+            console.log("line",[
+              [item.geometry.coordinates[0][1], item.geometry.coordinates[0][0]],  
+              [item.geometry.coordinates[1][1],item.geometry.coordinates[1][0]]  
+            ])
+          return <Polyline pathOptions={limeOptions} 
                key={item.properties.id} 
-                position={[
-                    [
-                      [51.5, -0.1],
-                      [51.5, -0.12],
-                      [51.52, -0.12],
-                    ],
-                    [
-                      [51.5, -0.05],
-                      [51.5, -0.06],
-                      [51.52, -0.06],
-                    ],
+                positions={[
+                    [item.geometry.coordinates[0][1], item.geometry.coordinates[0][0]],  
+                    [item.geometry.coordinates[1][1],item.geometry.coordinates[1][0]]  
                   ]}
                 >
                 </Polyline>
              }})    
-         } */}
+         } 
         
         {/* { data.features.map((item)=>{
          if(item.geometry.type=='Polygon'){

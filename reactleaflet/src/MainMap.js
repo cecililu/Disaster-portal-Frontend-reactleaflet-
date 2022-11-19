@@ -1,11 +1,13 @@
-import { Map, TileLayer,Marker,Popup, MapContainer,Polygon,Polyline} from 'react-leaflet'
+import { Map, TileLayer,Marker,Popup, MapContainer,Polygon,Polyline,GeoJSON} from 'react-leaflet'
+
 import React from 'react'
-import {Icon} from 'leaflet';
 import { data } from './data';
 import disasterimg from '../src/images.jpg'
+import district from './LalitpurGEOJSON.json'
+
 export const MainMap = () => {
     const limeOptions = { color: 'red' }
-    const position = [27.673223768106425,85.31110094938776]
+    const position = [27.5602,85.31110094938776]
     const [activeMarker,setactiveMarker]=React.useState(
         {
             "type": "Feature",
@@ -24,7 +26,8 @@ export const MainMap = () => {
     )
     console.log('active Marker',activeMarker)
     return (
-    <MapContainer center={position} zoom={14} scrollWheelZoom={false}>
+    <MapContainer center={position} zoom={12} scrollWheelZoom={false}>
+     <GeoJSON  data={district.features}  pathOptions={limeOptions} />
     <TileLayer
        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>    
@@ -61,9 +64,6 @@ export const MainMap = () => {
                 </Marker>
              }})    
          }
-
-   
-
        {data.features.map((item)=>{
          if(item.geometry.type=='LineString'){
             console.log("line",[
@@ -151,8 +151,7 @@ export const MainMap = () => {
          } 
 
 
-    
-    
+   
   </MapContainer>
   )
 }

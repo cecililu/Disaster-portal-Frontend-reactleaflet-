@@ -6,9 +6,9 @@ export const AddData = () => {
         <div className='flex justify-center'>
         <span className='text-teal-600 text-xl m-2 '>Report a disaster data</span>
         </div>
-    <div class="flex justify-center p-1 m-4"> 
+    <div class="flex justify-center p-1 m-2"> 
     <div class="mb-3 xl:w-96 ">
-     
+    <form>
     <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700" >Address</label>
     <input type="text"
       class="
@@ -80,6 +80,11 @@ export const AddData = () => {
       id="exampleFormControlInput1"
       placeholder="Enter the longitude"
     />
+    <div className='flex justify-center'>
+    <button class="bg-teal-500 hover:bg-teal-900 text-white font-bold py-2 px-4 rounded "> Button</button>
+    </div>
+    </form>
+
   </div>
 </div>
 </div>

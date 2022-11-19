@@ -1,18 +1,35 @@
-import { Map, TileLayer,Marker,Popup, MapContainer,Polygon,Polyline,GeoJSON} from 'react-leaflet'
-
+import { TileLayer,Marker,Popup, MapContainer,Polygon,Polyline,GeoJSON} from 'react-leaflet'
 import React from 'react'
 import { data } from './data';
 import disasterimg from '../src/images.jpg'
 import district from './LalitpurGEOJSON.json'
+import MarkerClusterGroup from 'react-leaflet-cluster';
+
+
+
+import 'leaflet/dist/leaflet.css'
+import L, { icon } from'leaflet'
+
+
+function GetIcon(_iconSize,type){
+  return L.icon({
+    iconUrl:require('./'+type+'.jpg'),
+    iconSize:_iconSize
+  })
+}
+
+
 export const MainMap = () => {
-    const limeOptions = { color: 'red' }
-    const LalitpurStyle = {
-       fillColor:'red',
-       fillOpacity:0,
-       color:'black',
+     const layerurl='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png'
+     const layerurl2="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+     const limeOptions = { color: 'red' }
+     const LalitpurStyle = {
+         fillColor:'red',
+         fillOpacity:0,
+         color:'black',
       weight:1 }
-    const position = [27.5602,85.31110094938776]
-    const [activeMarker,setactiveMarker]=React.useState(
+      const position = [27.5602,85.31110094938776]
+      const [activeMarker,setactiveMarker]=React.useState(
         {
             "type": "Feature",
             "properties": {
@@ -31,19 +48,22 @@ export const MainMap = () => {
     console.log('active Marker',activeMarker)
     return (
     <MapContainer center={position} zoom={12} scrollWheelZoom={false}>
-     <GeoJSON  data={district.features} pathOptions={LalitpurStyle} />
+          
+    <GeoJSON  data={district.features} pathOptions={LalitpurStyle} />
     <TileLayer
        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>    
-       
+       url={layerurl}/>    
+    
        { data.features.map((item)=>{
          if(item.geometry.type=='Point'){
-          return <Marker 
+          return  <MarkerClusterGroup >             
+             <Marker 
                key={item.properties.id} 
                 position={[
                     item.geometry.coordinates[1],
                     item.geometry.coordinates[0]
                 ]}
+                icon={GetIcon(40,'fire')}
                 >
                     <Popup>
                        <div>
@@ -66,6 +86,8 @@ export const MainMap = () => {
                       </div> 
                      </Popup>  
                 </Marker>
+              </MarkerClusterGroup>
+
              }})    
          }
        {data.features.map((item)=>{
@@ -126,9 +148,10 @@ export const MainMap = () => {
             [coordinates[6][1],coordinates[6][0]]
         ]
         console.log('ply',ply)
-          return <Polygon 
+          return <MarkerClusterGroup> <Polygon 
                key={item.properties.id}  pathOptions={limeOptions}
                 positions={ply}
+                icon={GetIcon(40,'water')}
                 >
                     <Popup>
                        <div>
@@ -151,11 +174,9 @@ export const MainMap = () => {
                       </div> 
                      </Popup>  
                 </Polygon>
+                </MarkerClusterGroup>
              }})    
          } 
-
-
-   
   </MapContainer>
   )
 }

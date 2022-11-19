@@ -4,9 +4,13 @@ import React from 'react'
 import { data } from './data';
 import disasterimg from '../src/images.jpg'
 import district from './LalitpurGEOJSON.json'
-
 export const MainMap = () => {
     const limeOptions = { color: 'red' }
+    const LalitpurStyle = {
+       fillColor:'red',
+       fillOpacity:0,
+       color:'black',
+      weight:1 }
     const position = [27.5602,85.31110094938776]
     const [activeMarker,setactiveMarker]=React.useState(
         {
@@ -27,7 +31,7 @@ export const MainMap = () => {
     console.log('active Marker',activeMarker)
     return (
     <MapContainer center={position} zoom={12} scrollWheelZoom={false}>
-     <GeoJSON  data={district.features}  pathOptions={limeOptions} />
+     <GeoJSON  data={district.features} pathOptions={LalitpurStyle} />
     <TileLayer
        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>    

@@ -18,40 +18,23 @@ function GetIcon(_iconSize,type){
 
 
 export const MainMap = () => {
-     const layerurl='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png'
-     const layerurl2="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-     const limeOptions = { color: 'red' }
-     const LalitpurStyle = {
+  
+    const layerurl='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png'
+    const limeOptions = { color: 'red' }
+    
+    const LalitpurStyle = {
          fillColor:'red',
          fillOpacity:0,
          color:'black',
       weight:1 }
       const position = [27.5602,85.31110094938776]
-      const [activeMarker,setactiveMarker]=React.useState(
-        {
-            "type": "Feature",
-            "properties": {
-              "name": "Zoo central Jawalkhel",
-              "id":"Animal Hazard"
-            },
-            "geometry": {
-              "coordinates": [
-                85.31110094938776,
-                27.673223768106425
-              ],
-              "type": "Point"
-            }
-          }
-    )
-    console.log('active Marker',activeMarker)
+    
     return (
-    <MapContainer center={position} zoom={12} scrollWheelZoom={false}>
-          
-    <GeoJSON  data={district.features} pathOptions={LalitpurStyle} />
-    <TileLayer
-       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-       url={layerurl}/>    
-       <Disaster/>
+    <MapContainer center={position} zoom={11} scrollWheelZoom={false}>
+      <GeoJSON  data={district.features} pathOptions={LalitpurStyle} />
+      <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url={layerurl}/>    
+        <Disaster/>
   </MapContainer>
   )
 }

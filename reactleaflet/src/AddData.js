@@ -81,7 +81,7 @@ export const AddData = () => {
       placeholder="Enter the longitude"
     />
     <div className='flex justify-center'>
-    <button class="bg-teal-500 hover:bg-teal-900 text-white font-bold py-2 px-4 rounded "> Button</button>
+    <button class="bg-teal-500 hover:bg-teal-900 text-white font-bold py-2 px-4 rounded "> Add data</button>
     </div>
     </form>
 

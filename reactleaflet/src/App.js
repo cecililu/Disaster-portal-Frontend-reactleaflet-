@@ -11,7 +11,7 @@ function App() {
 return (
   <BrowserRouter>
     <div className='App'>
-      <NavBar/>
+        <NavBar/>
     <div className='grid grid-cols-4 gap-0 h-screen'>
        <div className='col-span-3'>
           <MainMap/>

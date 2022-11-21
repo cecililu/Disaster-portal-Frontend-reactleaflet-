@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Link, Route, Routes } from "react-router-dom"
 import { PanelDashboard } from './PanelDashboard';
 import { AddData } from './AddData';
+
 export const Panel = () => {
+   const [data1, setdata] = useState([])
+   const getData=async()=>{
+       let maindata=await fetch('http://127.0.0.1:8000/api/disaster/v1/geoapi/')
+       maindata= await maindata.json()
+       setdata(maindata)
+   }
+   
+   useEffect(() => {
+     getData()
+   },[])
   return (
    <div>
       <ul className="flex justify-evenly py-2 border-4">
@@ -23,7 +34,7 @@ export const Panel = () => {
 
           </ul>
    <Routes>
-      <Route path="/" element={<PanelDashboard />} />
+      <Route path="/" element={<PanelDashboard data={data1}/>} />
       <Route path="/add" element={<AddData/>} />
   </Routes>
   </div>

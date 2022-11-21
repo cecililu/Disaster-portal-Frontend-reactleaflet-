@@ -79,10 +79,14 @@ function ShowCrimes({ data }) {
 
   return (
     <>
-      {clusters.map((cluster) => {
+      { supercluster.points.map((cluster) => {
+       
+       console.log("individual custer",cluster)
+
         // every cluster point has coordinates
         const [longitude, latitude] = cluster.geometry.coordinates;
         // the point may be either a cluster or a crime point
+       console.log('cluster coordinates',cluster.geometry.coordinates)
         const { cluster: isCluster, point_count: pointCount } =
           cluster.properties;
 

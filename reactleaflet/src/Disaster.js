@@ -33,7 +33,7 @@ export const Disaster = () => {
     const map = useMap();
     
     const updateMap=function () {
-        console.log("updating");
+
         const b = map.getBounds();
         setBounds([
           b.getSouthWest().lng,
@@ -41,6 +41,7 @@ export const Disaster = () => {
           b.getNorthEast().lng,
           b.getNorthEast().lat,
         ]);
+        console.log("updating",b);
         setZoom(map.getZoom());
       }
 
@@ -54,6 +55,7 @@ export const Disaster = () => {
 
       useEffect(() => {
         map.on("move", onMove);
+        
         return () => {
           map.off("move", onMove);
         };
@@ -61,7 +63,11 @@ export const Disaster = () => {
 
       const points = data.features.map((item) => ({
         type: "Feature",
-        properties: item.properties,
+        properties: {
+            "cluster":false,
+            "disaterid":item.properties.id,
+            "category":item.properties.name
+        },
         geometry: {
           type: item.type,
 
@@ -72,20 +78,23 @@ export const Disaster = () => {
         },
       }));
 
-      const { clusters, supercluster } = useSupercluster({
+      console.log('the points are',points)
+    
+      const { clusters,supercluster } = useSupercluster({
         points: points,
         bounds: bounds,
         zoom: zoom,
         options: { radius: 75, maxZoom: 17 },
       });
- 
-      
-      return (
-         <>
+
+    console.log(clusters)
+
+            return (
+         <> 
           {clusters.map((cluster) => {
-           
-            const [longitude, latitude] = cluster.geometry.coordinates;
-            const { cluster: isCluster, point_count: pointCount } =cluster.properties;
+                console.log(cluster)
+                const [longitude, latitude] = cluster.geometry.coordinates;
+                const { cluster: isCluster, point_count: pointCount } =cluster.properties;
 
             if (isCluster){
                 return (

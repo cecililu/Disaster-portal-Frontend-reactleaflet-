@@ -6,8 +6,10 @@ import {
   BrowserRouter,
   
 } from "react-router-dom";
+import { useState } from 'react';
 function App() {
-  
+const [count, setcount] = useState(0)
+
 return (
   <BrowserRouter>
     <div className='App'>
@@ -17,7 +19,7 @@ return (
           <MainMap/>
        </div>
        <div className='text-white col-span-1'>   
-        <Panel/>
+        <Panel setcount={setcount}/>
      </div>
     </div>
   </div>

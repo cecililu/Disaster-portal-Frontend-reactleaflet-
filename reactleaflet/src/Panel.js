@@ -4,7 +4,7 @@ import { Link, Route, Routes } from "react-router-dom"
 import { PanelDashboard } from './PanelDashboard';
 import { AddData } from './AddData';
 
-export const Panel = () => {
+export const Panel = ({setcount}) => {
    const [data1, setdata] = useState([])
    const getData=async()=>{
        let maindata=await fetch('http://127.0.0.1:8000/api/disaster/v1/geoapi/')
@@ -35,7 +35,7 @@ export const Panel = () => {
           </ul>
    <Routes>
       <Route path="/" element={<PanelDashboard data={data1}/>} />
-      <Route path="/add" element={<AddData/>} />
+      <Route path="/add" element={<AddData setcount={setcount}/>} />
   </Routes>
   </div>
   )

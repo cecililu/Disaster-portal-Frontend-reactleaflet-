@@ -20,7 +20,6 @@ function GetIcon(_iconSize,type){
 
 
 export const MainMap = () => {
-  
     const layerurl='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png'
     const limeOptions = { color: 'red' }
     const [polygon, setpolygon] = useState([])
@@ -30,6 +29,7 @@ export const MainMap = () => {
          color:'black',
       weight:1 }
       const position = [27.5602,85.31110094938776]
+      
       const _onCreate=e=>{
       const {layerType,layer}=e
           if(layerType==='polygon'){
@@ -44,16 +44,17 @@ export const MainMap = () => {
           }}
     
       const _onEdit=e=>{
-        const {layer: {_layer}}=e
-        Object.values(_layer).map(({_leaflet_id,editing})=>{
-        setpolygon(layers=>layers.map(l=>l.id===_leaflet_id?{...L,latLngs:{...editing.latlng[0]}}:l))
+        const {layers: {_layers}}=e
+         Object.values(_layers).map(({_leaflet_id,editing})=>{
+            setpolygon(layers=>layers.map(l=>l.id===_leaflet_id
+              ?{...l,latLngs:{...editing.latlngs[0]}}:l))
        }) 
       }
 
 
       const _onDelete=e=>{
-       const {layers:{_layers}}=e
-       Object.values(_layers).map(_leaflet_id=>{
+        const {layers: {_layers}}=e
+         Object.values(_layers).map(_leaflet_id=>{
         setpolygon(layers=>layers.filter(l=>l.id===_leaflet_id))
        })
       }

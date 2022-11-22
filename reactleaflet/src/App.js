@@ -9,6 +9,8 @@ import {
 import { useState } from 'react';
 function App() {
 const [count, setcount] = useState(0)
+const [movableMarkerPosition, setmovableMarkerPosition] = useState ([27.5602,85.31])
+const [needmarker,setneedmarker]=useState(1)
 
 return (
   <BrowserRouter>
@@ -16,10 +18,10 @@ return (
         <NavBar/>
     <div className='grid grid-cols-4 gap-0 h-screen'>
        <div className='col-span-3'>
-          <MainMap/>
+          <MainMap position={movableMarkerPosition} setPosition={setmovableMarkerPosition} needmarker/>
        </div>
        <div className='text-white col-span-1'>   
-        <Panel setcount={setcount}/>
+        <Panel setcount={setcount} position={movableMarkerPosition}/>
      </div>
     </div>
   </div>

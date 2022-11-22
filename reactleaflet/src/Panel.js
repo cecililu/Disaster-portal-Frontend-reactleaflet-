@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
-import { Link, Route, Routes } from "react-router-dom"
+import { Link, Route, Routes, useParams } from "react-router-dom"
 import { PanelDashboard } from './PanelDashboard';
 import { AddData } from './AddData';
+////
+import { matchRoutes, useLocation } from "react-router-dom"
 
-export const Panel = ({setcount}) => {
+const routes = [{ path: "/members/:id" }]
+
+const useCurrentPath = () => {
+  const location = useLocation()
+  const [{ route }] = matchRoutes(routes, location)
+
+  return route.path
+
+}////get route current
+
+export const Panel = ({setcount,position}) => {
+   
    const [data1, setdata] = useState([])
    const getData=async()=>{
        let maindata=await fetch('http://127.0.0.1:8000/api/disaster/v1/geoapi/')
@@ -35,7 +48,7 @@ export const Panel = ({setcount}) => {
           </ul>
    <Routes>
       <Route path="/" element={<PanelDashboard data={data1}/>} />
-      <Route path="/add" element={<AddData setcount={setcount}/>} />
+      <Route path="/add" element={<AddData latlng={position} setcount={setcount}/>} />
   </Routes>
   </div>
   )

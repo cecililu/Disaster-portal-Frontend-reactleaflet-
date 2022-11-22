@@ -31,7 +31,7 @@ export const Disaster = () => {
         return(<>
              {data1.map((item)=>{
                 console.log(item.lat)
-                return(<Marker icon={GetIcon(20)} position={[item.long,item.lat]}/>) 
+                return(<Marker icon={GetIcon(20)} position={[item.lat,item.long]}/>) 
              })}
         
         </>);

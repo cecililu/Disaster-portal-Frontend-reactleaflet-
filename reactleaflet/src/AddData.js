@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Formik } from 'formik';
 
-export const AddData = ({setcount}) => {
-  
+export const AddData = ({setcount,latlng}) => {
+   console.log(latlng.lat)
   return (
     <div className='add-panel'>
         <div className='flex justify-center'>
@@ -113,7 +113,7 @@ export const AddData = ({setcount}) => {
       id="exampleFormControlInput2"
       placeholder="Enter Laltitude"
       name='lat'
-      value={values.lat}
+      value={latlng.lat}
       onChange={handleChange}
     />
 
@@ -140,7 +140,7 @@ export const AddData = ({setcount}) => {
       id="exampleFormControlInput1"
       placeholder="Enter the longitude"
       name='long'
-      value={values.long}
+      value={latlng.lng}
       onChange={handleChange}
     />
     <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700 " >Comment</label>

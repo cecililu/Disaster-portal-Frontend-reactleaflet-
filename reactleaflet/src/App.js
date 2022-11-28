@@ -10,18 +10,17 @@ import { useState } from 'react';
 function App() {
 const [count, setcount] = useState(0)
 const [movableMarkerPosition, setmovableMarkerPosition] = useState ([27.5602,85.31])
-const [needmarker,setneedmarker]=useState(1)
-
+const [needmarker,setneedmarker]=useState(0)
 return (
   <BrowserRouter>
     <div className='App'>
         <NavBar/>
     <div className='grid grid-cols-4 gap-0 h-screen'>
        <div className='col-span-3'>
-          <MainMap position={movableMarkerPosition} setPosition={setmovableMarkerPosition} needmarker/>
+          <MainMap position={movableMarkerPosition} setPosition={setmovableMarkerPosition} needmarker={needmarker}/>
        </div>
        <div className='text-white col-span-1'>   
-        <Panel setcount={setcount} position={movableMarkerPosition}/>
+        <Panel setcount={setcount} position={movableMarkerPosition} setneedmarker={setneedmarker}/>
      </div>
     </div>
   </div>

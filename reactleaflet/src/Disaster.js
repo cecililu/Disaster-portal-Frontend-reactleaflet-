@@ -6,12 +6,12 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 import { data } from 'autoprefixer';
 
 function GetIcon(_iconSize,type){
+  // 
   return L.icon({
-    iconUrl:require('./fire.jpg'),
-    iconSize:_iconSize
+    iconUrl:require('./'+(type)+'.jpg'),
+    iconSize:30
   })
 }
-
 const limeOptions={color:'red'}
 export const Disaster = () => {
     
@@ -30,8 +30,18 @@ export const Disaster = () => {
     if (data1.length>0){
         return(<>
              {data1.map((item)=>{
-                console.log(item.lat)
-                return(<Marker icon={GetIcon(20)} position={[item.lat,item.long]}/>) 
+                console.log("HHHHHHHHHHHHHHH",item)
+                return(<Marker icon={GetIcon(20,item.type)} position={[item.lat,item.long]}>
+                  <Popup>
+                    <div>
+                      <h2>{item.disaster}</h2>
+                      
+                      <span> Rating : {item.rating}</span>
+                      <span> Type : {item.type}</span>
+                      <h5> Comment:{item.Comment}</h5>
+                    </div>
+                  </Popup>
+                </Marker>) 
              })}
         
         </>);

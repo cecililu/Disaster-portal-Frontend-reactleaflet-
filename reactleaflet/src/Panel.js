@@ -11,12 +11,9 @@ const routes = [{ path: "/members/:id" }]
 const useCurrentPath = () => {
   const location = useLocation()
   const [{ route }] = matchRoutes(routes, location)
-
   return route.path
-
 }////get route current
-
-export const Panel = ({setcount,position}) => {
+export const Panel = ({setcount,position,setneedmarker}) => {
    
    const [data1, setdata] = useState([])
    const getData=async()=>{
@@ -47,8 +44,8 @@ export const Panel = ({setcount,position}) => {
 
           </ul>
    <Routes>
-      <Route path="/" element={<PanelDashboard data={data1}/>} />
-      <Route path="/add" element={<AddData latlng={position} setcount={setcount}/>} />
+      <Route path="/" element={<PanelDashboard data={data1} setneedmarker={setneedmarker}/>} />
+      <Route path="/add" element={<AddData latlng={position} setcount={setcount} setneedmarker={setneedmarker}/>} />
   </Routes>
   </div>
   )

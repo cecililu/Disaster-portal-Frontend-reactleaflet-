@@ -1,8 +1,8 @@
 import React from 'react'
 import { data } from './data';
 
-export const PanelDashboard = ({data}) => {
-
+export const PanelDashboard = ({data,setneedmarker}) => {
+  setneedmarker(0)
   console.log(data)
   return ( 
     <div><div className="w-full h-full" aria-label="Sidebar">

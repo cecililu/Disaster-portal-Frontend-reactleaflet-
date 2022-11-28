@@ -1,5 +1,5 @@
 import {FeatureGroup,TileLayer,Marker,Popup, MapContainer,Polygon,Polyline,GeoJSON} from 'react-leaflet'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import 'leaflet-draw/dist/leaflet.draw.css'
 import '../node_modules/leaflet/dist/leaflet.css';
@@ -28,7 +28,8 @@ function GetIcon(_iconSize,type){
 export const MainMap = ({position, setPosition,needmarker}) => {
    
     const [draggable, setDraggable] = useState(true)
-   
+   const [geojson, setgeojson] = useState({})
+     console.log("asdasdasdasdasdasda__________--",geojson)
     const layerurl='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png'
     const limeOptions = { color: 'red' }
     const [polygon, setpolygon] = useState([])
@@ -78,7 +79,17 @@ export const MainMap = ({position, setPosition,needmarker}) => {
         }),
         [],
       )
-        
+       const getgeojson=async()=>{
+         
+         let data=await fetch("http://127.0.0.1:8000/api/disaster/v1/locals/1/")
+         data=await data.json()
+         setgeojson(data)
+
+       }
+
+       useEffect(()=>{
+         getgeojson()
+        },[])
 
     return (
       <div>

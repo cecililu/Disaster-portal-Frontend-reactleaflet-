@@ -7,11 +7,12 @@ import {
   
 } from "react-router-dom";
 import { useState } from 'react';
+import { Link, Route, Routes, useParams } from "react-router-dom"
 function App() {
 const [count, setcount] = useState(0)
 const [movableMarkerPosition, setmovableMarkerPosition] = useState ([27.5602,85.31])
 const [needmarker,setneedmarker]=useState(0)
-return (
+return (<>
   <BrowserRouter>
     <div className='App'>
         <NavBar/>
@@ -23,8 +24,11 @@ return (
         <Panel setcount={setcount} position={movableMarkerPosition} setneedmarker={setneedmarker}/>
      </div>
     </div>
+    
   </div>
   </BrowserRouter>
+  
+  </>
   );
 }
 

@@ -1,6 +1,6 @@
 import {FeatureGroup,TileLayer,Marker,Popup, MapContainer,Polygon,Polyline,GeoJSON} from 'react-leaflet'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-
+import { Link, Route, Routes, useParams } from "react-router-dom"
 import 'leaflet-draw/dist/leaflet.draw.css'
 import '../node_modules/leaflet/dist/leaflet.css';
 import district from './LalitpurGEOJSON.json'
@@ -26,7 +26,9 @@ function GetIcon(_iconSize,type){
 
 
 export const MainMap = ({position, setPosition,needmarker}) => {
-   
+   const handleshp=()=>{
+    window.location.replace('127.0.0.1:8000/api/utility/v1/shapefile');
+   }
     const [draggable, setDraggable] = useState(true)
    const [geojson, setgeojson] = useState({})
      console.log("asdasdasdasdasdasda__________--",geojson)
@@ -133,7 +135,9 @@ export const MainMap = ({position, setPosition,needmarker}) => {
       
   </MapContainer>
   {JSON.stringify(polygon)}
-  Marker postion {JSON.stringify(position)}
+ <div className='bg-teal-500 p-2 text-white m-5'> Marker postion {JSON.stringify(position)}</div>
+  <br/>
+  <a className='bg-teal-500 p-2 text-white m-5' href='http://127.0.0.1:8000/api/utility/v1/shapefile' >Go get shp Now</a>
   </div>
   )
 }

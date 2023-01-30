@@ -13,8 +13,9 @@ const useCurrentPath = () => {
   const [{ route }] = matchRoutes(routes, location)
   return route.path
 }////get route current
+
+
 export const Panel = ({setcount,position,setneedmarker}) => {
-   
    const [data1, setdata] = useState([])
    const getData=async()=>{
        let maindata=await fetch('http://127.0.0.1:8000/api/disaster/v1/geoapi/')
@@ -27,7 +28,9 @@ export const Panel = ({setcount,position,setneedmarker}) => {
    },[])
   return (
    <div>
+      
       <ul className="flex justify-evenly py-2 border-4">
+      
           <li className='
           '>
             <Link to="/" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -41,10 +44,14 @@ export const Panel = ({setcount,position,setneedmarker}) => {
                 <span className="flex-1 ml-3 whitespace-nowrap">Report a disaster</span>
              </Link>
           </li>
-
+          
+         
           </ul>
    <Routes>
+      {/* <Route exact path="/" component={() => <Redirect to={{ pathname: '127.0.0.1:8000/api/utility/v1/shapefile' }} />} /> */}
       <Route path="/" element={<PanelDashboard data={data1} setneedmarker={setneedmarker}/>} />
+      <Route path="/shp"
+       render={() => window.location = "127.0.0.1:8000/api/utility/v1/shapefile"} />
       <Route path="/add" element={<AddData latlng={position} setcount={setcount} setneedmarker={setneedmarker}/>} />
   </Routes>
   </div>
